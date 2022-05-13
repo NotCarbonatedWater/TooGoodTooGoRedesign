@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:too_good_to_go/restaurantpage.dart';
 import 'data.dart';
 import 'navbar.dart';
 import 'account.dart';
+import 'restaurantpage.dart';
 
-Image icon = Image.asset("images/restaurant.png");
+String icon = "res/restaurant.png";
 const double boxSize = 100;
 
 void main() => runApp(const Home());
@@ -25,11 +27,9 @@ class Home extends StatelessWidget {
             shrinkWrap: true,
             itemCount: getNumOfRestaurant(),
             itemBuilder: (BuildContext context, int index) {
-
               return Card(
                 child: ListTile(
                   contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
-
                   leading: ConstrainedBox(
                     constraints: const BoxConstraints(
                       minWidth: boxSize,
@@ -37,10 +37,15 @@ class Home extends StatelessWidget {
                       maxWidth: boxSize,
                       maxHeight: boxSize,
                     ),
-                    child: Image.asset("images/restaurant.png", fit: BoxFit.cover),
+                    child: Image.asset("res/restaurant.png", fit: BoxFit.cover),
                   ),
                   title: Text(getRestaurant(index)),
                   subtitle: Text(getRestaurantDescription(index)),
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const RestaurantPage()),
+                  ),
                 ),
               );
             },
